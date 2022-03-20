@@ -1,0 +1,31 @@
+server:
+  port: 8231
+
+spring:
+  application:
+    name: springcloud-provider-dept
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springcloud?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+
+mybatis:
+  type-aliases-package: com.gzh.springcloud.entity
+  mapper-locations: classpath:mybatis/mapper/*.xml
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka8213:8213/eureka,http://eureka8214:8214/eureka,http://eureka8215:8215/eureka
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+    instance-id: ${spring.application.name}:${server.port}
+
+#访问actuator/info不报错
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

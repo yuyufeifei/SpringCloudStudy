@@ -1,0 +1,13 @@
+server:
+  port: 8212
+
+eureka:
+  client:
+    register-with-eureka: false   #不向Eureka注册中心注册
+    service-url:
+      defaultZone: http://eureka8213:8213/eureka,http://eureka8214:8214/eureka,http://eureka8215:8215/eureka
+
+# 开启服务降级
+feign:
+  circuitbreaker:
+    enabled: true

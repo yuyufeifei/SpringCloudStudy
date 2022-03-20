@@ -1,0 +1,41 @@
+server:
+  port: 8211
+
+spring:
+  application:
+    name: springcloud-provider-dept
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springcloud?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+
+mybatis:
+  type-aliases-package: com.gzh.springcloud.entity
+  mapper-locations: classpath:mybatis/mapper/*.xml
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka8213:8213/eureka,http://eureka8214:8214/eureka,http://eureka8215:8215/eureka
+#    生产环境建议关闭
+#    healthcheck:
+#      enabled: true
+  instance:
+#    使用ip
+    prefer-ip-address: true
+#    ip-address: 127.0.0.1
+    hostname: localhost
+#    instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
+    instance-id: ${spring.application.name}:${server.port}
+
+#访问actuator/info不报错
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+#info显示不出来，未解决
+#info:
+#  app.name: GZH-springcloud

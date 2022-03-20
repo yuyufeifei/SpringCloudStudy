@@ -1,0 +1,16 @@
+server:
+  port: 8245
+spring:
+  application:
+    name: springcloud-config-server
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/yuyufeifei/springcloud-config.git
+
+# 启动后访问：
+#  http://localhost:8245/application/test/master
+#  http://localhost:8245/application-dev.yml
+#  http://localhost:8245/application-prod.yml

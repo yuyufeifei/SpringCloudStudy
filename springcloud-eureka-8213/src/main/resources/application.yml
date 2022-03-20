@@ -1,0 +1,43 @@
+server:
+  port: 8213
+
+eureka:
+  instance:
+    hostname: eureka8213
+  client:
+    register-with-eureka: false   #表示是否向Eureka注册中心注册自己
+    fetch-registry: false   #表示自己为注册中心
+    service-url:
+#      单机配置
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      #集群
+      defaultZone: http://eureka8214:8214/eureka,http://eureka8215:8215/eureka
+
+
+#官方：只创建一个模块，分别部署在不同的服务器上，启动时通过profiles区分
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: https://peer1/eureka/,http://peer2/eureka/,http://peer3/eureka/
+#
+#---
+#spring:
+#  #profiles已过时，使用spring.config.activate.on-profile
+#  profiles: peer1
+#eureka:
+#  instance:
+#    hostname: peer1
+
+#---
+#spring:
+#  profiles: peer2
+#eureka:
+#  instance:
+#    hostname: peer2
+#
+#---
+#spring:
+#  profiles: peer3
+#eureka:
+#  instance:
+#    hostname: peer3

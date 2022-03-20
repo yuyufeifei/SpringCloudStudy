@@ -1,0 +1,36 @@
+server:
+  port: 8218
+spring:
+  application:
+    name: springcloud-zuul
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka8213:8213/eureka,http://eureka8214:8214/eureka,http://eureka8215:8215/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+#springcloud高版本已不支持Zuul，使用Gateway
+zuul:
+  routes:
+    #通过"www.gzh.com:8218/springcloud-provider-dept/+具体的访问路径"访问
+    mydept.serviceId: springcloud-provider-dept
+    #通过"www.gzh.com:8218/mydept/+具体的访问路径"访问
+    mydept.path: /mydept/**
+#  不使用服务名访问
+#  ignored-services: springcloud-provider-dept
+  #禁止所有服务名访问
+  ignored-services: "*"
+  #设置公共的前缀，访问路径如"www.gzh.com:8218/gzh/mydept/+具体的访问路径"
+  prefix: /gzh
+
+#    user-service:
+#      path: /springcloud-provider-dept/**
+#      url: http://127.0.0.1:8211

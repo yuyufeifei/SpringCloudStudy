@@ -1,0 +1,11 @@
+server:
+  port: 8215
+
+eureka:
+  instance:
+    hostname: eureka8215
+  client:
+    register-with-eureka: false   #表示是否向Eureka注册中心注册自己
+    fetch-registry: false   #表示自己为注册中心
+    service-url:
+      defaultZone: http://eureka8213:8213/eureka,http://eureka8214:8214/eureka

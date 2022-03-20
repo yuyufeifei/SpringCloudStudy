@@ -1,0 +1,7 @@
+#server:
+#  port: 8248
+spring:
+  application:
+    name: springcloud-config-client
+#  config:
+#    import: optional:configserver:http://localhost:8245
